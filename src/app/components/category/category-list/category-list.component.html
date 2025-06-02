@@ -1,0 +1,46 @@
+<app-header-admin></app-header-admin>
+
+
+      <!-- Page Content List Products-->
+      <div class="container">
+        <h1 class="mt-4 mb-3">
+          Admin ecommerce AC <small>Categorias</small>
+        </h1>
+
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+          <li class="breadcrumb-item active" >Ver Categorias</li>
+        </ol>
+
+        <a class="btn btn-primary" routerLink="/admin/category/add">Crear Categoria</a>
+        <h2>Categoria</h2>
+
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody *ngFor = "let c of categories">
+            <tr>
+              <td>{{c.id}}</td>
+              <td>{{c.name}}</td>
+              <td><button class="btn btn-warning" [routerLink]="['/admin/category/update',c.id]" >Editar</button></td>
+              <td><button class="btn btn-danger" (click)="deleteCategory(c.id)">Eliminar</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pagination-controls
+          class="my-3"
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        ></pagination-controls>
+      </div>
+
+

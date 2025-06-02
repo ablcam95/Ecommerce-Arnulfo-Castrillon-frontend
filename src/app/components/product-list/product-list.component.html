@@ -1,0 +1,47 @@
+<app-header-admin></app-header-admin>
+
+      <!-- Page Content List Products-->
+<div class="container">
+  <h1 class="mt-4 mb-3">
+    Admin ecommerce AC <small>Productos</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+    <li class="breadcrumb-item active">Ver Productos</li>
+  </ol>
+
+  <a class="btn btn-primary" routerLink="/admin/product/addproduct">Crear Producto</a>
+  <h2>Productos</h2>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products | paginate: { itemsPerPage: 20, currentPage: page }">
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.price }}</td>
+        <td><button class="btn btn-warning" [routerLink]="['/admin/product/update',p.id]">Editar</button></td>
+        <td><button class="btn btn-danger" (click)="deleteporductById(p.id)">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls
+    class="my-3"
+    (pageChange)="page = $event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+  ></pagination-controls>
+</div>
