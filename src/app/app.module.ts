@@ -20,6 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SumaryOrderComponent } from './components/orders/sumary-order/sumary-order.component';
 import { FooterUserComponent } from './components/footer-user/footer-user.component';
 import { WhatsappUserComponent } from './components/whatsapp-user/whatsapp-user.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { RegistrationComponent } from './components/authetication/registration/registration.component';
+import { LoginComponent } from './components/authetication/login/login.component';
 
 
 
@@ -33,7 +36,10 @@ const routes : Routes = [
   {path:'admin/category/add',component:CategoryAddComponent},
   {path:'admin/category/update/:id',component:CategoryAddComponent},
   {path:'cart/detailproduct/:id',component:DetailProductComponent},
-  {path:'cart/sumary',component:SumaryOrderComponent}
+  {path:'cart/sumary',component:SumaryOrderComponent},
+  {path:'payment/success',component:PaymentSuccessComponent},
+  {path:'user/register',component:RegistrationComponent},
+  {path:'user/login',component:LoginComponent}
 ];
 
 @NgModule({
@@ -50,6 +56,9 @@ const routes : Routes = [
     SumaryOrderComponent,
     FooterUserComponent,
     WhatsappUserComponent,
+    PaymentSuccessComponent,
+    RegistrationComponent,
+    LoginComponent,
 
 
   ],

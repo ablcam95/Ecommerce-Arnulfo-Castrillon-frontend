@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-header-user',
@@ -6,6 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './header-user.component.html',
   styleUrl: './header-user.component.css'
 })
-export class HeaderUserComponent {
+export class HeaderUserComponent implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+
 
 }
+
+

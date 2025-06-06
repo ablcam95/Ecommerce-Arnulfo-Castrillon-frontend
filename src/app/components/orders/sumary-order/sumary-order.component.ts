@@ -6,6 +6,9 @@ import { OrderProduct } from '../../../common/order-product';
 import { Order } from '../../../common/order';
 import { OrderState } from '../../../common/order-state';
 import { OrderService } from '../../../services/order.service';
+import { PaymentService } from '../../../services/payment.service';
+import { DataPayment } from '../../../common/data-payment';
+import { SessionStorageService } from '../../../services/session-storage.service';
 
 @Component({
   selector: 'app-sumary-order',
@@ -27,7 +30,9 @@ export class SumaryOrderComponent implements OnInit {
 
   constructor(private cartService:CartService,
     private userService:UserService,
-    private orderService:OrderService
+    private orderService:OrderService,
+    private paymentService:PaymentService,
+    private sessionStorage:SessionStorageService
   ){}
 
   ngOnInit(): void {
@@ -47,8 +52,20 @@ export class SumaryOrderComponent implements OnInit {
     this.orderService.createOrder(order).subscribe(
       data => {
         console.log(`order creada con id: ${data.id}`);
+        this.sessionStorage.setItem('order',data);
       },
-      error => `Error: ${error}`
+    );
+
+    //redirrecion y pago a Paypal
+    let urlPayment;
+    let dataPayment = new DataPayment('PAYPAL',this.totalCart.toString(),'COP','COMPRA');
+
+    this.paymentService.getUrlPaypalPayment(dataPayment).subscribe(
+      data => {
+        console.log(`respuesta exitosa`);
+        urlPayment = data.url;
+        window.location.href = urlPayment;
+      },
     );
 
 //   export class OrderProduct {

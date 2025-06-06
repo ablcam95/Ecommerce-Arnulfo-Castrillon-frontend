@@ -9,7 +9,7 @@ import { Order } from '../common/order';
 export class OrderService {
 
   private apiUrl : string = "http://localhost:8085/api/v1/orders";
-  private update:string = "/update/state/order";
+  private update:string = "update/state/order";
 
   constructor(private httpClient: HttpClient) { }
 

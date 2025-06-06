@@ -3,6 +3,7 @@ import { Product } from '../../common/product';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../common/category';
+import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -36,18 +37,18 @@ filtrosSeleccionados = {
 };
 
   constructor(
-    private productService: ProductService,
-    private categoryService: CategoryService
+    private homeService:HomeService,
+
   ) {}
 
   ngOnInit(): void {
     // Cargar categorías
-    this.categoryService.getCategoryList().subscribe(
+    this.homeService.getCategoryList().subscribe(
       dataCategory => this.categorias = dataCategory
     );
 
     // Cargar productos
-    this.productService.getProducts().subscribe(data => {
+    this.homeService.getProducts().subscribe(data => {
       this.products = data;
       this.filtrarProductos(); // Aplicar filtro inicial
     });
