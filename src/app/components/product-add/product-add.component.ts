@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from '../../common/category';
 import { CategoryService } from '../../services/category.service';
+import { SessionStorageService } from '../../services/session-storage.service';
 
 @Component({
   selector: 'app-product-add',
@@ -25,6 +26,7 @@ export class ProductAddComponent implements OnInit{
   userId : string = '1';
   categoryId : string = '1';
   selectFile! : File;
+  user: number =0;
 
   categories : Category [] = []
 
@@ -32,7 +34,8 @@ export class ProductAddComponent implements OnInit{
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private toastr:ToastrService,
-    private categoryService:CategoryService) {
+    private categoryService:CategoryService,
+    private sessionStorage:SessionStorageService) {
 
 
     }
@@ -40,7 +43,9 @@ export class ProductAddComponent implements OnInit{
   ngOnInit(): void {
 
     this.getProductById();
-    this.getCategories()
+    this.getCategories();
+    this.user = this.sessionStorage.getItem('token').id;
+    this.userId = this.user.toString();
 
   }
 
@@ -61,6 +66,7 @@ export class ProductAddComponent implements OnInit{
     formData.append('categoryId', this.categoryId);
 
     console.log('Contenido del FormData:');
+    console.log(formData);
     formData.forEach((value, key) => {
       console.log(`${key}:`, value);
     });

@@ -28,7 +28,11 @@ export class PaymentSuccessComponent implements OnInit{
     formData.append('state',OrderState.CONFIRMED.toString());
 
     this.orderService.updateOrder(formData).subscribe(
-      data => console.log(data)
+      data => {console.log(data)
+
+      console.log("LogoutComponent" + this.sessionStorage.getItem("token"));
+      this.sessionStorage.removeItem("token");
+      console.log("LogoutComponent ELIMINADO" + this.sessionStorage.getItem("token")); }
     );
   }
 
